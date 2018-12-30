@@ -39,6 +39,14 @@ class Parsing:
             log.debug(f'{source} API invalid response: {response.status_code}')
             return False
 
+    def processing(self):
+        if self.source == "nbu":
+            return self.nbu_processing()
+        elif self.source == "minfin_mb":
+            return self.minfin_mb_processing()
+        elif self.source == "minfin_av":
+            return self.minfin_av_processing()
+
     def nbu_processing(self):
         response = Parsing.sending_request(self.update_date, self.source)
         if not self.status_code_checker(response, self.source) is False:
@@ -55,7 +63,7 @@ class Parsing:
             raw_result = [(query['currency'].upper(), query['ask'], query['bid'],
                            datetime.strptime(query['pointDate'], '%Y-%m-%d %H:%M:%S'))
                           for query in response
-                          if query.upper() in currencies]
+                          if query['currency'].upper() in currencies]
             raw_result.sort(key=lambda tup: tup[0])
             for key, group in groupby(raw_result, key=lambda t: t[0]):
                 items = list(group)
@@ -68,10 +76,3 @@ class Parsing:
             for key, value in response.items():
                 if key.upper() in currencies:
                     self.data.append((key.upper(), value['ask'], value['bid'], self.update_date))
-
-
-if __name__ == '__main__':
-    dat = date(2018, 12, 24)
-    parsed = Parsing('nbu', dat)
-    parsed.nbu_processing()
-    print(parsed.data)
