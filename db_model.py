@@ -51,5 +51,15 @@ def update_rates(api_source, update_date=datetime.now()):
             )
 
 
+if __name__ == '__main__':
+
+    # dat = datetime.now()
+    # for each in Parsing.api.keys():
+    #     update_rates(each, dat)
+
+    for each in XRate.select().order_by(XRate.updated.desc()):
+        print(each)
+
+
 db.close()
 
