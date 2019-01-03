@@ -9,32 +9,32 @@ currencies = ('USD', 'EUR', 'RUB')
 
 class Parsing:
 
-    api = {'nbu': "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange",  # Курс НБУ
-           'minfin_mb': "http://api.minfin.com.ua/mb/6c913d55a2d11ac117dee65ac1c8ae538380eee6/",  # Курс межбанка
+    api = {'nbu': "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange",  # NBU rate
+           'minfin_mb': "http://api.minfin.com.ua/mb/6c913d55a2d11ac117dee65ac1c8ae538380eee6/",  # MB rate
            'minfin_av': "http://api.minfin.com.ua/summary/6c913d55a2d11ac117dee65ac1c8ae538380eee6/"
-           # Средний курс в банках
+           # Average rate in banks
            }
 
     def __init__(self, source, update_date):
         self.source = source
         self.update_date = update_date
-        self.data = []  # Создаем новый пустой лист для каждого API
+        self.data = []  # Creae empty list for each API response
 
     @classmethod
     def sending_request(cls, update_date, source):
         try:
-            if update_date and source == 'nbu':  # Отправка запроса для получения NBU данных
+            if update_date and source == 'nbu':  # Send request on NBU API
                 return requests.get(cls.api[source], params={'date': update_date.strftime('%Y%m%d')})
-            elif update_date and source != 'nbu':  # Отправка запроса для получения Межбанка или среднего курса
+            elif update_date and source != 'nbu':  # Send request to Minfin API to receive average or MB rates
                 return requests.get(cls.api[source] + update_date.strftime('%Y-%m-%d'))
-            else:  # Отправка стандартного запроса, без указания даты курса
+            else:  # Send a standard request without date specification
                 return requests.get(cls.api[source])
         except requests.exceptions.RequestException as problem:
             log.debug(f'{source} API request error: {problem}')
             return None
 
     @staticmethod
-    def status_code_checker(response, source):  # Верификация кода запроса для дальнейшей обработки
+    def status_code_checker(response, source):  # Verify response code
         if not response.status_code == requests.codes.ok:
             log.debug(f'{source} API invalid response: {response.status_code}')
             return False
@@ -76,3 +76,4 @@ class Parsing:
             for key, value in response.items():
                 if key.upper() in currencies:
                     self.data.append((key.upper(), value['ask'], value['bid'], self.update_date))
+
