@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Курс {{ rates[0][1] }}</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th></th>
+            <th>НБУ</th>
+            <th>Банки</th>
+            <th>Міжбанк</th>
+        </tr>
+        <tr>
+            <td>Купівля</td>
+            <td>{{ rates[0][2] }}</td>
+            <td>{{ rates[2][2] }}</td>
+            <td>{{ rates[1][2] }}</td>
+        </tr>
+        <tr>
+            <td>Продаж</td>
+            <td>{{ rates[0][3] }}</td>
+            <td>{{ rates[2][3] }}</td>
+            <td>{{ rates[1][3] }}</td>
+        </tr>
+    </table>
+</body>
+</html>
