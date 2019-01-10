@@ -1,0 +1,157 @@
+body {
+    color: #000;
+    font-family: open sans,helvetica neue,Helvetica,Arial,lucida grande,sans-serif;
+    font-size: 1em;
+    line-height: 1.8;
+}
+
+div {
+    display: block;
+}
+
+*, :focus {
+    outline: none;
+}
+
+.wrapper {
+    height: auto !important;
+    min-height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.header {
+    position: relative;
+    z-index: 11;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+header {
+    display: block;
+}
+
+.container {
+    max-width: 900px;
+}
+
+.header .container {
+    padding: 46px 47px 30px;
+}
+
+.header-right {
+    float: right;
+    margin: -4px 0px 0px;
+    position: relative;
+    z-index: 10;
+}
+
+.choose-cc {
+    float: right;
+    margin: -7px 0 0;
+    font-weight: 400;
+}
+
+[class$="-list"],
+[class*="-list "],
+[class$="-list"] > li,
+[class*="-list "] > li {
+	background:none;
+	border:0;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+.choose-cc-list li {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0 0 0 5px;
+}
+
+.choose-cc li {
+    vertical-align: top;
+    display: -moz-inline-stack;
+    display: inline-block;
+    zoom: 1;
+}
+
+.choose-cc-list a {
+    border: 1px solid #000;
+    border-radius: 5px;
+    display: block;
+    padding: 5px 14px 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.choose-cc-list .active, .choose-cc-list a:hover {
+    background: #371d71;
+    color: #fff;
+}
+
+.cont {
+    position: relative;
+    padding: 131px 47px 229px;
+    max-width: 900px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+
+}
+
+.table-info {
+    float: right;
+    width: 551px;
+}
+
+.table-info th {
+    font-weight: 300;
+}
+
+.table-info th:first-child {
+    padding-left: 129.6px;
+}
+
+.table-info td, .table-info th {
+    padding: 0;
+    font-weight: normal;
+    text-align: left;
+    font: 800 16px/17px Roboto Condensed, Tahoma, Verdana, sans-serif;
+}
+
+.table-info tr th:first-child div, .table-info tr td:first-child div {
+    position: relative;
+    z-index: 1;
+}
+
+.table-info span {
+    display: block;
+    padding: 21px 10px 22px;
+    position: relative;
+    z-index: 1;
+}
+
+.table-info th span {
+    padding: 10px 10px 10px;
+}
+
+.table-info tr td:first-child div:before, .table-info tr th:first-child div:before {
+    box-shadow: 0 1px 0 rgba(55, 29, 113, 1);
+    content: "";
+    height: 100%;
+    left: 0;
+    margin: 0 -9999px;
+    padding: 0 9999px;
+    position: absolute;
+    top: 0;
+}
+
+.table-info tr td:first-child, .table-info tr th {
+    font-weight: 400;
+}
