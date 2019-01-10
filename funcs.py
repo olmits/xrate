@@ -46,3 +46,4 @@ def create_tup(func):  # Create the list of namedtuple from the given function.
         for rate in func
     ]
     return tubs
+
