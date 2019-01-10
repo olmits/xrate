@@ -3,27 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Курс {{ rates[0][1] }}</title>
+    <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='utils.css') }}">
 </head>
 <body>
-    <table>
-        <tr>
-            <th></th>
-            <th>НБУ</th>
-            <th>Банки</th>
-            <th>Міжбанк</th>
-        </tr>
-        <tr>
-            <td>Купівля</td>
-            <td>{{ rates[0][2] }}</td>
-            <td>{{ rates[2][2] }}</td>
-            <td>{{ rates[1][2] }}</td>
-        </tr>
-        <tr>
-            <td>Продаж</td>
-            <td>{{ rates[0][3] }}</td>
-            <td>{{ rates[2][3] }}</td>
-            <td>{{ rates[1][3] }}</td>
-        </tr>
-    </table>
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header-right">
+                    <div class="choose-cc">
+                        <ul class="choose-cc-list">
+                            <li><a href="{{ url_for('get_rates', cc='USD') }}">USD</a></li>
+                            <li><a href="{{ url_for('get_rates', cc='EUR') }}">EUR</a></li>
+                            <li><a href="{{ url_for('get_rates', cc='RUB') }}">RUB</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="cont" role="main">
+            <div class="container">
+                <table class="table-info">
+                    <thead>
+                        <tr>
+                            <th colspan="2"><div><span>НБУ</span></div></th>
+                            <th><div><span>Банки</span></div></th>
+                            <th><div><span>Міжбанк</span></div></th>
+                            <th><div><span>Чорний ринок</span></div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div><span>Продаж</span></div></td>
+                            <td><div><span>{{ rates[0][2] }}</span></div></td>
+                            <td><div><span>{{ rates[2][2] }}</span></div></td>
+                            <td><div><span>{{ rates[1][2] }}</span></div></td>
+                            <td><div><span>-</span></div></td>
+                        </tr>
+                        <tr>
+                            <td><div><span>Купівля</span></div></td>
+                            <td><div><span>{{ rates[0][3] }}</span></div></td>
+                            <td><div><span>{{ rates[2][3] }}</span></div></td>
+                            <td><div><span>{{ rates[1][3] }}</span></div></td>
+                            <td><div><span>-</span></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
