@@ -18,7 +18,7 @@ class Parsing:
     def __init__(self, source, update_date):
         self.source = source
         self.update_date = update_date
-        self.data = []  # Creae empty list for each API response
+        self.data = []  # Create empty list for each API response
 
     @classmethod
     def sending_request(cls, update_date, source):
@@ -77,3 +77,9 @@ class Parsing:
                 if key.upper() in currencies:
                     self.data.append((key.upper(), value['ask'], value['bid'], self.update_date))
 
+
+if __name__ == '__main__':
+    dat = date(2018, 12, 28)
+    parsed = Parsing('minfin_av', dat)
+    parsed.processing()
+    print(parsed.data)
